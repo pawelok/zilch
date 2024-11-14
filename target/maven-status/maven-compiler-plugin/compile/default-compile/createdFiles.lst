@@ -1,6 +1,0 @@
-Listeners\CustomTestExecutionListener.class
-Enums\Platform.class
-helpers\AppiumHelper.class
-pageobjects\BasePage.class
-pageobjects\CreateAccountPage.class
-pageobjects\WelcomePage.class
