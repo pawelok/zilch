@@ -21,7 +21,7 @@ public class CustomTestExecutionListener implements TestExecutionExceptionHandle
         takeScreenshot(appiumDriver, context.getDisplayName());
         LOG.severe("Test Failed: " + context.getDisplayName());
         LOG.severe("Error: " + throwable.getMessage());
-        throw throwable;  // Re-throw the exception so that JUnit knows the test failed
+        throw throwable;
     }
 
     private void takeScreenshot(AppiumDriver driver, String testName) {
