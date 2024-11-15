@@ -1,6 +1,5 @@
 package pageobjects;
 
-import helpers.AppiumHelper;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -8,46 +7,44 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-public class WelcomePage extends BasePage{
+public class WelcomePage extends Base {
 
-//    AppiumDriver driver;
     //TODO add ios locators
     @AndroidFindBy(id = "welcome-screen")
-    @iOSXCUITFindBy(id = "xxx")
-    public WebElement welcomePage ;
+    @iOSXCUITFindBy(id = "")
+    public WebElement welcomePage;
 
     @AndroidFindBy(id = "welcome-get-started")
-    @iOSXCUITFindBy(id = "xxx")
-    public WebElement createAccountButton ;
+    @iOSXCUITFindBy(id = "")
+    public WebElement createAccountButton;
 
     @AndroidFindBy(id = "welcome-log-in")
-    @iOSXCUITFindBy(accessibility = "xxx")
+    @iOSXCUITFindBy(accessibility = "")
     public WebElement loginButton;
 
 
-    public WelcomePage(AppiumDriver driver){
+    public WelcomePage(AppiumDriver driver) {
         super(driver);
-//        this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public boolean isWelcomePageDisplayed(){
+    public boolean isWelcomePageDisplayed() {
         return appiumHelper.isElementDisplayed(welcomePage);
     }
 
-    public boolean isCreateAccountButtonDisplayed(){
+    public boolean isCreateAccountButtonDisplayed() {
         return appiumHelper.isElementDisplayed(createAccountButton);
     }
 
-    public boolean isLoginButtonDisplayed(){
+    public boolean isLoginButtonDisplayed() {
         return appiumHelper.isElementDisplayed(createAccountButton);
     }
 
-    public void clickOnCreateAccountButton(){
+    public void clickOnCreateAccountButton() {
         createAccountButton.click();
     }
 
-    public void clickOnLoginButton(){
+    public void clickOnLoginButton() {
         loginButton.click();
     }
 }

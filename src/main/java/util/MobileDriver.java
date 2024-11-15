@@ -1,4 +1,4 @@
-package Base;
+package util;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -9,12 +9,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MobileDriver {
-    String platform = System.getenv("PLATFORM");
-    String deviceUdid = System.getenv("DEVICE_UDID");
-    String appId = System.getenv("APP_ID");
     private static final String appiumUrl = "http://127.0.0.1:4723";
+    static String appId = System.getenv("APP_ID");
 
-    public AppiumDriver setUpDriver() {
+    public static AppiumDriver setUpDriver(String platform, String deviceUdid) {
         // Validate environment variables
         if (platform == null || deviceUdid == null) {
             throw new IllegalArgumentException("Both PLATFORM and DEVICE_UDID environment variables must be set.");
@@ -22,15 +20,15 @@ public class MobileDriver {
         // Set capabilities based on platform (Android or iOS)
         switch (platform.toLowerCase()) {
             case "android":
-                return getAndroidDriver();
+                return getAndroidDriver(deviceUdid);
             case "ios":
-                return getIosDriver();
+                return getIosDriver(deviceUdid);
             default:
                 throw new IllegalArgumentException("Unsupported platform: " + platform);
         }
     }
 
-    private AppiumDriver getIosDriver() {
+    private static AppiumDriver getIosDriver(String deviceUdid) {
         var options = new BaseOptions()
                 .setPlatformName("iOS")
                 .amend("platformVersion", "14.4") // Example version, adjust as needed
@@ -47,7 +45,7 @@ public class MobileDriver {
     }
 
 
-    private AppiumDriver getAndroidDriver() {
+    private static AppiumDriver getAndroidDriver(String deviceUdid) {
         var options = new BaseOptions()
                 .setPlatformName("Android")
                 .amend("appium:udid", "R8YWB0AWXYJ")

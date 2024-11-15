@@ -1,40 +1,51 @@
 package pageobjects;
 
-import helpers.AppiumHelper;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import io.appium.java_client.pagefactory.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-public class CreateAccountPage extends BasePage {
+public class CreateAccountPage extends Base {
 
     //TODO add ios locators
     @AndroidFindBy(id = "email-field")
-    @iOSXCUITFindBy(id = "xxx")
+    @iOSXCUITFindBy(id = "")
     public WebElement emailInputField;
 
     @AndroidFindBy(id = "email-field-error-validation")
-    @iOSXCUITFindBy(id = "xxx")
+    @iOSXCUITFindBy(id = "")
     public WebElement emailValidationErrorText;
 
     @AndroidFindBy(id = "password-field")
-    @iOSXCUITFindBy(id = "xxx")
+    @iOSXCUITFindBy(id = "")
     public WebElement passwordInputField;
 
     @AndroidFindBy(id = "password-field-error-validation")
-    @iOSXCUITFindBy(id = "xxx")
+    @iOSXCUITFindBy(id = "")
     public WebElement passwordValidationErrorText;
 
     @AndroidFindBy(id = "create-account-button")
-    @iOSXCUITFindBy(id = "xxx")
+    @iOSXCUITFindBy(id = "")
     public WebElement createAccountButton;
 
+    @AndroidFindBy(id = "mobile-number-input")
+    @iOSXCUITFindBy(id = "")
+    public WebElement mobileInputField;
+
+    @AndroidFindBy(id = "nav-header-back-btn")
+    @iOSXCUITFindBy(id = "")
+    public WebElement backButton;
+
+    @AndroidFindBy(id = "FunCaptcha")
+    @iOSXCUITFindBy(id = "")
+    public WebElement funCaptchaWindow;
+
+    @AndroidFindAll({@AndroidBy(id = "FunCaptcha"), @AndroidBy(id = "mobile-number-input")})
+    @iOSXCUITFindBy(id = "")
+    public WebElement mobileInputFieldOrCaptcha;
 
     public CreateAccountPage(AppiumDriver driver) {
         super(driver);
-//        this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
@@ -60,6 +71,10 @@ public class CreateAccountPage extends BasePage {
         passwordInputField.sendKeys(password);
     }
 
+    public boolean isMobileInputFieldIsDisplayed() {
+        return appiumHelper.isElementDisplayed(mobileInputField);
+    }
+
     public void clickOnCreateAccountButton() {
         createAccountButton.click();
     }
@@ -74,5 +89,25 @@ public class CreateAccountPage extends BasePage {
 
     public String getPasswordValidationErrorText() {
         return passwordValidationErrorText.getText();
+    }
+
+    public void clickOnEmailIInputField() {
+        emailInputField.click();
+    }
+
+    public void clickOnPasswordInputField() {
+        passwordInputField.click();
+    }
+
+    public void clickOnBackButton() {
+        backButton.click();
+    }
+
+    public boolean ifFunCaptchaWindowDisplayed() {
+        return appiumHelper.isElementDisplayed(funCaptchaWindow);
+    }
+
+    public boolean isMobileInputOrCaptchaDisplayed() {
+        return appiumHelper.isElementDisplayed(mobileInputFieldOrCaptcha);
     }
 }
