@@ -19,8 +19,8 @@ import util.MobileDriver;
 public class TestRunner {
     protected static String appId = System.getenv("APP_ID");
     protected static String appActivity = System.getenv("APP_ACTIVITY");
-    static String platform = System.getenv("PLATFORM");
-    static String deviceUdid = System.getenv("DEVICE_UDID");
+    protected static String platform = System.getenv("PLATFORM");
+    protected static String deviceUdid = System.getenv("DEVICE_UDID");
     protected AppiumDriver driver;
     protected PlatformInterface platformHelper;
 
