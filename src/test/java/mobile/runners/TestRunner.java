@@ -17,12 +17,12 @@ import util.MobileDriver;
 @ExtendWith(CustomTestExecutionListener.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TestRunner {
-    protected AppiumDriver driver;
-    protected PlatformInterface platformHelper;
-    static String platform = System.getenv("PLATFORM");
-    static String deviceUdid = System.getenv("DEVICE_UDID");
     protected static String appId = System.getenv("APP_ID");
     protected static String appActivity = System.getenv("APP_ACTIVITY");
+    static String platform = System.getenv("PLATFORM");
+    static String deviceUdid = System.getenv("DEVICE_UDID");
+    protected AppiumDriver driver;
+    protected PlatformInterface platformHelper;
 
     @BeforeAll
     public void initDriver() {

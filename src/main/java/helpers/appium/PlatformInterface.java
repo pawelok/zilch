@@ -8,5 +8,5 @@ public interface PlatformInterface {
 
     void pressOnReturnKey();
 
-    void  restartApp(String appId, String appActivity);
+    void restartApp(String appId, String appActivity);
 }
