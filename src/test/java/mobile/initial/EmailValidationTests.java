@@ -1,6 +1,6 @@
-package initial;
+package mobile.initial;
 
-import base.TestBase;
+import mobile.base.TestBase;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;

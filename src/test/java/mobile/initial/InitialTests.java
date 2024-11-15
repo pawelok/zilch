@@ -1,6 +1,6 @@
-package initial;
+package mobile.initial;
 
-import base.TestBase;
+import mobile.base.TestBase;
 import org.junit.jupiter.api.*;
 
 

@@ -23,13 +23,13 @@ public class ApiHelper {
     private static String uiToken = "1571807edab54ec89.1442995705|r=eu-west-1|meta=3|meta_width=335|meta_height=431|metabgclr=transparent|metaiconclr=%23757575|guitextcolor=%23000000|pk=D5264E07-85CF-434C-88E5-6F095A832C01|at=40|ag=101|cdn_url=https%3A%2F%2Fclient-api.arkoselabs.com%2Fcdn%2Ffc|lurl=https%3A%2F%2Faudio-eu-west-1.arkoselabs.com|surl=https%3A%2F%2Fclient-api.arkoselabs.com|smurl=https%3A%2F%2Fclient-api.arkoselabs.com%2Fcdn%2Ffc%2Fassets%2Fstyle-manager";
 
 
-    // Set the base URI for RestAssured requests
+    // Set the mobile.base URI for RestAssured requests
     static {
         RestAssured.baseURI = BASE_URL;
     }
 
 
-    public static Response postCreateCustomer(String email, String password) {
+    public static Response postCreateCustomer(String email, String password, String uiToken) {
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("emailId", email);
         requestBody.put("password", password);
@@ -48,10 +48,4 @@ public class ApiHelper {
         LOG.info("Response status code: {}", response.statusCode());
         return response;
     }
-
-    public static void main(String[] args) {
-        postCreateCustomer("asafsa@gseges.com", "Test!tre4egtmmgvne");
-    }
-
-
 }

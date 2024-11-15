@@ -1,4 +1,4 @@
-package runners;
+package mobile.runners;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
