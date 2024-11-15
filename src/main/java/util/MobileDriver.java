@@ -13,11 +13,9 @@ public class MobileDriver {
     static String appId = System.getenv("APP_ID");
 
     public static AppiumDriver setUpDriver(String platform, String deviceUdid) {
-        // Validate environment variables
         if (platform == null || deviceUdid == null) {
             throw new IllegalArgumentException("Both PLATFORM and DEVICE_UDID environment variables must be set.");
         }
-        // Set capabilities based on platform (Android or iOS)
         switch (platform.toLowerCase()) {
             case "android":
                 return getAndroidDriver(deviceUdid);
