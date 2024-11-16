@@ -1,4 +1,4 @@
-package helpers.api;
+package api;
 
 
 import configuration.PropertiesReader;

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class InitialTests extends TestBase {
+public class CreateCustomerUiTests extends TestBase {
 
     @Test
     @Order(1)
@@ -19,7 +19,7 @@ public class InitialTests extends TestBase {
 
     @Test
     @Order(2)
-    public void verifyCreateAccountContent() {
+    public void verifyCreateAccountPageContent() {
         welcomePage.clickOnCreateAccountButton();
         Assertions.assertAll(
                 () -> Assertions.assertTrue(createAccountPage.isCreateAccountButtonDisplayed(), "Create account button was not displayed"),
@@ -31,7 +31,7 @@ public class InitialTests extends TestBase {
 
     @Test
     @Order(3)
-    public void verifyIfKeyboardIsDisplayedAfterClickingEmailInputField() {
+    public void verifyKeyboardDisplaysAfterClickingEmailInputField() {
         createAccountPage.clickOnEmailIInputField();
         softAssertions.assertThat(platformHelper.isKeyboardDisplayed()).isEqualTo(true).withFailMessage("Keyboard was not displayed after clicking on email input field");
         platformHelper.hideKeyboard();
@@ -40,7 +40,7 @@ public class InitialTests extends TestBase {
 
     @Test
     @Order(4)
-    public void verifyIfKeyboardIsDisplayedAfterClickingPasswordInputField() {
+    public void verifyKeyboardDisplaysAfterClickingPasswordInputField() {
         createAccountPage.clickOnPasswordInputField();
         softAssertions.assertThat(platformHelper.isKeyboardDisplayed()).isEqualTo(true).withFailMessage("Keyboard was not displayed after clicking on password input field");
         platformHelper.hideKeyboard();
@@ -49,7 +49,7 @@ public class InitialTests extends TestBase {
 
     @Test
     @Order(5)
-    public void verifyCreateAccountButtonIsDisabledWhenOnlyOneInputIsFilled() {
+    public void verifyCreateAccountButtonIsDisabledWithOneInputFieldFilled() {
         createAccountPage.clickOnEmailIInputField();
         createAccountPage.fillEmailInput("test@test.test");
         platformHelper.hideKeyboard();

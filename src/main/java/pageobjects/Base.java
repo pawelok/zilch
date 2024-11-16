@@ -1,6 +1,6 @@
 package pageobjects;
 
-import helpers.appium.AppiumHelper;
+import appium.AppiumHelper;
 import io.appium.java_client.AppiumDriver;
 
 public class Base {

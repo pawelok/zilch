@@ -1,4 +1,4 @@
-package helpers.appium;
+package appium;
 
 import com.google.inject.Inject;
 import io.appium.java_client.AppiumDriver;

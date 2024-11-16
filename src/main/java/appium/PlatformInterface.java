@@ -1,4 +1,4 @@
-package helpers.appium;
+package appium;
 
 public interface PlatformInterface {
 

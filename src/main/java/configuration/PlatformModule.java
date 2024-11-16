@@ -3,9 +3,9 @@ package configuration;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
-import helpers.appium.AndroidHelper;
-import helpers.appium.IosHelper;
-import helpers.appium.PlatformInterface;
+import appium.AndroidHelper;
+import appium.IosHelper;
+import appium.PlatformInterface;
 import io.appium.java_client.AppiumDriver;
 
 import static util.TestConstants.ANDROID;

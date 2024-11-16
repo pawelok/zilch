@@ -4,7 +4,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import configuration.PlatformModule;
 import configuration.PropertiesReader;
-import helpers.appium.PlatformInterface;
+import appium.PlatformInterface;
 import io.appium.java_client.AppiumDriver;
 import listeners.CustomTestExecutionListener;
 import org.junit.jupiter.api.AfterAll;
