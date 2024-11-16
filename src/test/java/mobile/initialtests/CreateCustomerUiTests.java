@@ -1,4 +1,4 @@
-package mobile.initial;
+package mobile.initialtests;
 
 import mobile.base.TestBase;
 import org.junit.jupiter.api.*;

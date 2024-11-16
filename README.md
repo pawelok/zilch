@@ -39,5 +39,5 @@ if using mac replace 'set' with 'export'
 3. Execute tests
 
 ```bash
-mvn -Dtest=mobile.initial.** test
+mvn -Dtest=mobile.initialtests.** test
 ```
