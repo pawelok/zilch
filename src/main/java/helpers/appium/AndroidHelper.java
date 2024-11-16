@@ -16,7 +16,6 @@ public class AndroidHelper implements PlatformInterface {
         this.driver = (AndroidDriver) appiumDriver;
     }
 
-
     @Override
     public boolean isKeyboardDisplayed() {
         return driver.isKeyboardShown();

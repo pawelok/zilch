@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class EmailValidationTests extends TestBase {
 
-    String testingPassword = "88888888";
+    static final String TESTING_PASSWORD = "88888888";
 
     @BeforeEach
     void preconditions() {
@@ -16,13 +16,13 @@ public class EmailValidationTests extends TestBase {
         welcomePage.clickOnCreateAccountButton();
     }
 
-    @ParameterizedTest(name = "{index} => email={0}")
+    @ParameterizedTest(name = "Test {index} - Email: {0}")
     @CsvFileSource(resources = "/email_correct_test_data.csv")
     public void validateEmailInputField(String email) {
         createAccountPage.clickOnEmailIInputField();
         createAccountPage.fillEmailInput(email);
         createAccountPage.clickOnPasswordInputField();
-        createAccountPage.fillPasswordInput(testingPassword);
+        createAccountPage.fillPasswordInput(TESTING_PASSWORD);
         platformHelper.hideKeyboard();
         createAccountPage.clickOnCreateAccountButton();
         Assertions.assertTrue(createAccountPage.isMobileInputOrCaptchaDisplayed(), "Email was not accepted when creating new account: " + email);

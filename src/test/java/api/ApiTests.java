@@ -1,6 +1,6 @@
 package api;
 
-import helpers.ApiHelper;
+import helpers.api.CreateCustomerApiHelper;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ public class ApiTests {
 
     @Test
     public void verifyIfServiceIsOnline() {
-        Response res = ApiHelper.postCreateCustomer(testEmail, testPassword, sampleUiToken);
+        Response res = CreateCustomerApiHelper.postCreateCustomer(testEmail, testPassword, sampleUiToken);
         Assertions.assertAll(
                 () -> Assertions.assertFalse(res.statusCode() >= 500, "Server is probably offline. Status: " + res.statusCode()),
                 () -> Assertions.assertTrue(res.getTime() <= maxResponseTimeoutMs, "Response was taking longer than " + res.getTime() + "ms")
@@ -23,7 +23,7 @@ public class ApiTests {
 
     @Test
     public void postCreateUserWithIncorrectUiToken() {
-        Response res = ApiHelper.postCreateCustomer(testEmail, testPassword, sampleUiToken);
+        Response res = CreateCustomerApiHelper.postCreateCustomer(testEmail, testPassword, sampleUiToken);
         Assertions.assertAll(
                 () -> Assertions.assertEquals(403, res.statusCode()),
                 () -> Assertions.assertTrue(res.getTime() <= maxResponseTimeoutMs, "Response was taking longer than " + res.getTime() + "ms")
@@ -32,11 +32,10 @@ public class ApiTests {
 
     @Test
     public void postCreateUserWithEmptyUiToken() {
-        Response res = ApiHelper.postCreateCustomer(testEmail, testPassword, "");
+        Response res = CreateCustomerApiHelper.postCreateCustomer(testEmail, testPassword, "");
         Assertions.assertAll(
                 () -> Assertions.assertEquals(403, res.statusCode()),
                 () -> Assertions.assertTrue(res.getTime() <= maxResponseTimeoutMs, "Response was taking longer than " + res.getTime() + "ms")
         );
     }
-
 }

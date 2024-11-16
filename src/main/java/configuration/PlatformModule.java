@@ -11,12 +11,12 @@ import io.appium.java_client.AppiumDriver;
 import static util.TestConstants.ANDROID;
 import static util.TestConstants.IOS;
 
-public class PlatformAbstractModule extends AbstractModule {
+public class PlatformModule extends AbstractModule {
 
     private final String platform;
     private final AppiumDriver driver;
 
-    public PlatformAbstractModule(String platform, AppiumDriver driver) {
+    public PlatformModule(String platform, AppiumDriver driver) {
         this.platform = platform;
         this.driver = driver;
     }

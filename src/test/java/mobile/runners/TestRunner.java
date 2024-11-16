@@ -2,7 +2,8 @@ package mobile.runners;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import configuration.PlatformAbstractModule;
+import configuration.PlatformModule;
+import configuration.PropertiesReader;
 import helpers.appium.PlatformInterface;
 import io.appium.java_client.AppiumDriver;
 import listeners.CustomTestExecutionListener;
@@ -17,18 +18,17 @@ import util.MobileDriver;
 @ExtendWith(CustomTestExecutionListener.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TestRunner {
-    protected static String appId = System.getenv("APP_ID");
-    protected static String appActivity = System.getenv("APP_ACTIVITY");
-    protected static String platform = System.getenv("PLATFORM");
-    protected static String deviceUdid = System.getenv("DEVICE_UDID");
+    protected static String appId = PropertiesReader.getAppId();
+    protected static String appActivity = PropertiesReader.getAppActivity();
+    protected static String platform = PropertiesReader.getPlatform();
     protected AppiumDriver driver;
     protected PlatformInterface platformHelper;
 
     @BeforeAll
     public void initDriver() {
-        driver = MobileDriver.setUpDriver(platform, deviceUdid);
+        driver = MobileDriver.setUpDriver(platform);
         CustomTestExecutionListener.appiumDriver = driver;
-        Injector injector = Guice.createInjector(new PlatformAbstractModule(platform, driver));
+        Injector injector = Guice.createInjector(new PlatformModule(platform, driver));
         platformHelper = injector.getInstance(PlatformInterface.class);
     }
 

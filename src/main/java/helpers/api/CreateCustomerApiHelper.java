@@ -1,6 +1,7 @@
-package helpers;
+package helpers.api;
 
 
+import configuration.PropertiesReader;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -12,17 +13,15 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
-public class ApiHelper {
+public class CreateCustomerApiHelper {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ApiHelper.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CreateCustomerApiHelper.class);
 
-    private static final String BASE_URL = "https://api-eu-ew1-prod.payzilch.com";
     private static final String SIGN_UP_ENDPOINT = "/customer-api/auth0/signup";
 
     static {
-        RestAssured.baseURI = BASE_URL;
+        RestAssured.baseURI = PropertiesReader.getApiBaseUrl();
     }
-
 
     public static Response postCreateCustomer(String email, String password, String uiToken) {
         Map<String, Object> requestBody = new HashMap<>();

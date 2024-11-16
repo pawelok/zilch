@@ -19,6 +19,5 @@ public class TestBase extends TestRunner {
         createAccountPage = new CreateAccountPage(driver);
         welcomePage = new WelcomePage(driver);
         softAssertions = new SoftAssertions();
-
     }
 }

@@ -1,61 +1,66 @@
 package util;
 
+import configuration.PropertiesReader;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.options.BaseOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MobileDriver {
     private static final String appiumUrl = "http://127.0.0.1:4723";
-    static String appId = System.getenv("APP_ID");
+    static String appId = PropertiesReader.getAppId();
+    static String appActivity = PropertiesReader.getAppActivity();
+    static String deviceUdid = PropertiesReader.getDeviceUdid();
 
-    public static AppiumDriver setUpDriver(String platform, String deviceUdid) {
+    public static AppiumDriver setUpDriver(String platform) {
         if (platform == null || deviceUdid == null) {
             throw new IllegalArgumentException("Both PLATFORM and DEVICE_UDID environment variables must be set.");
         }
         switch (platform.toLowerCase()) {
             case "android":
-                return getAndroidDriver(deviceUdid);
+                return getAndroidDriver();
             case "ios":
-                return getIosDriver(deviceUdid);
+                return getIosDriver();
             default:
                 throw new IllegalArgumentException("Unsupported platform: " + platform);
         }
     }
 
-    private static AppiumDriver getIosDriver(String deviceUdid) {
-        var options = new BaseOptions()
-                .setPlatformName("iOS")
-                .amend("platformVersion", "14.4") // Example version, adjust as needed
-                .setAutomationName("XCUITest")
-                .amend("appium:udid", deviceUdid)
-                .amend("appium:newCommandTimeout", 3600)
-                .amend("appium:appPackage", appId);
-        ;
+    private static AppiumDriver getIosDriver() {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("platformVersion", "14.4"); // Default version if not set
+        capabilities.setCapability("automationName", "XCUITest");
+        capabilities.setCapability("udid", deviceUdid);
+        capabilities.setCapability("newCommandTimeout", 3600);
+        capabilities.setCapability("app", appId);
+
         try {
-            return new IOSDriver(getUrl(), options);
+            return new IOSDriver(getUrl(), capabilities);
         } catch (MalformedURLException e) {
             throw new RuntimeException("Failed to initialize IOSDriver", e);
         }
     }
 
 
-    private static AppiumDriver getAndroidDriver(String deviceUdid) {
-        var options = new BaseOptions()
-                .setPlatformName("Android")
-                .amend("appium:udid", "R8YWB0AWXYJ")
-                .setAutomationName("UiAutomator2")
-                .amend("appium:nativeWebScreenshot", true)
-                .amend("appium:newCommandTimeout", 3600)
-                .amend("appium:connectHardwareKeyboard", true)
-                .amend("appium:appPackage", appId)
-                .amend("appium:disableIdLocatorAutocompletion", true)
-                .amend("appium:appActivity", "com.payzilch.app.MainActivity");
+    private static AppiumDriver getAndroidDriver() {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("automationName", "UiAutomator2");
+        capabilities.setCapability("udid", deviceUdid);
+        capabilities.setCapability("newCommandTimeout", 3600);
+        capabilities.setCapability("appPackage", appId);
+        capabilities.setCapability("appActivity", appActivity);
+        capabilities.setCapability("nativeWebScreenshot", true);
+        capabilities.setCapability("connectHardwareKeyboard", true);
+        capabilities.setCapability("disableIdLocatorAutocompletion", true);
+
         try {
-            return new AndroidDriver(getUrl(), options);
+            return new AndroidDriver(getUrl(), capabilities);
         } catch (MalformedURLException e) {
             throw new RuntimeException("Failed to initialize AndroidDriver", e);
         }
